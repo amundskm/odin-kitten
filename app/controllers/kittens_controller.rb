@@ -13,6 +13,7 @@ class KittensController < ApplicationController
 
   def create
     @kitten = Kitten.create(kitten_params)
+    redirect_to root_url
   end
 
   def edit
@@ -20,17 +21,29 @@ class KittensController < ApplicationController
   end
 
   def update
-    @kitten.update_attributes(kitten_params)
+    @kitten = Kitten.find(params[:id])
+    if @kitten.update_attributes(kitten_params)
+      flash[:sucess] = "Kitten updated"
+      redirect_to @kitten
+    else
+      flash.now[:warning] = "The kitten was not updated"
+      render 'edit'
+    end
   end
 
   def destroy
-    @kitten.find(params[:id]).destroy
+    if Kitten.find(params[:id]).destroy
+      flash[:sucess] = "Kitten deleted"
+      redirect_to root_url
+    else
+      flash.now[:warning] = "The kitten was not deleted"
+    end
   end
 
   private
 
     def kitten_params
-      params.require(:kitten).premit(:name, :age, :cuteness, :softness)
+      params.require(:kitten).permit(:name, :age, :cuteness, :softness)
     end
 
 end

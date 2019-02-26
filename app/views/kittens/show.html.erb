@@ -1,0 +1,10 @@
+<ul>
+  <li>Kitten <%= @kitten.id %></li>
+  <li>Name: <%= @kitten.name %></li>
+  <li>Age: <%= @kitten.age %></li>
+  <li>Cuteness: <%= @kitten.cuteness %></li>
+  <li>Softness: <%= @kitten.softness %></li>
+  <li><%= link_to "edit", edit_kitten_url(@kitten) %></li>
+  <li><%= link_to "delete", @kitten, method: :delete,
+                                  data: {confirm: "Are you sure?"}%></li>
+</ul>
