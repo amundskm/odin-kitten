@@ -1,0 +1,14 @@
+<h1><%= :title %></h1>
+<div id="<%= :title %>_form">
+  <%= form_for @kittlen, url: :action do |f| %>
+    <%= f.label  :name %>
+    <%= f.text   :name %>
+    <%= f.label  :age %>
+    <%= f.text   :age %>
+    <%= f.label  :cuteness %>
+    <%= f.text   :cuteness %>
+    <%= f.label  :softness %>
+    <%= f.text   :softness %>
+    <%= f.submit :button %>
+  <% end %>
+</div>
